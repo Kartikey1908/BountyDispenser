@@ -15,7 +15,7 @@ export default function BountiesPage() {
     useEffect(() => {
         async function fetchBounties() {
             try {
-                const response = await axios.get("/api/get-bounties?page=1&limit=4");
+                const response = await axios.get("/api/get-bounties?page=1&limit=100");
                 if (response.data.success) {
                     setBounties(response.data.bounties);
                 }

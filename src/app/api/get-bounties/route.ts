@@ -11,10 +11,10 @@ export async function GET(req : NextRequest, res : NextResponse) {
 
   // Parse the page and limit, or set defaults
   const pageNumber = parseInt(page, 10) || 1;
-  const pageSize = parseInt(limit, 10) || 10;
+  const pageSize = parseInt(limit, 10) || 100;
 
   try {
-    dbConnect();
+    await dbConnect();
 
     // Calculate the offset for pagination
     const skip = (pageNumber - 1) * pageSize;
