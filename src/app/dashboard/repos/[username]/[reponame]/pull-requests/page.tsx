@@ -48,13 +48,13 @@ export default function PullRequests() {
     async function fetchPullRequests() {
       if (session?.accessToken && owner && repo) {
         try {
-          console.log("in");
+          // console.log("in");
           const response = await axios.get(`https://api.github.com/repos/${session?.user?.profile?.login}/${repo}/pulls?page=1&per_page=100&state=all`,{
             headers: {
                 Authorization: `token ${session.accessToken}`,
             },
           });
-          console.log(response);
+          // console.log(response);
           // Map the response data to your PullRequest type
           const pullRequests = response.data.map((item: any) => ({
             id: item.id,
@@ -73,7 +73,7 @@ export default function PullRequests() {
         } catch (error) {
           console.error("Error fetching pull requests:", error);
         } 
-        console.log("in");
+        // console.log("in");
       }
       setLoading(false);
     }
@@ -125,11 +125,11 @@ export default function PullRequests() {
         })
         const transaction34 = await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
         setTxnSignature(signature);
-        console.log(signature);
-        console.log(transaction34)
+        // console.log(signature);
+        // console.log(transaction34)
         
         const amountInLamports = Number(pr.amount) * LAMPORTS_PER_SOL;
-        console.log("Amount in lamports", amountInLamports);
+        // console.log("Amount in lamports", amountInLamports);
         const response = await axios.post(`/api/send-bounty`, { 
             pr_user_name: pr.user.login,
             pr_user_id: pr.user.id,
@@ -147,7 +147,7 @@ export default function PullRequests() {
 
 
     } catch (error) {
-        console.log("Error occurred, transaction failed", error);
+        // console.log("Error occurred, transaction failed", error);
         toast({
             variant: "destructive",
             title: "Transaction Failed",
@@ -230,7 +230,7 @@ export default function PullRequests() {
 
                 <button
                     onClick={() => {
-                      console.log('Button clicked');
+                      // console.log('Button clicked');
                       handleClick(pr);
                     }}
                     className="group relative inline-flex h-12 w-full overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 mb-2"

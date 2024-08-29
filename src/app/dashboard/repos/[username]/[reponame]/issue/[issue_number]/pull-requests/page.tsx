@@ -44,11 +44,11 @@ export default function PullRequests() {
   const issueNumber = params.issue_number;
 
   const handleApproveBounty = async (pr: PullRequest) => {
-    console.log("Approve Bounty");
-    console.log(pr);
-    console.log(owner);
-    console.log(repo);
-    console.log(issueNumber);
+    // console.log("Approve Bounty");
+    // console.log(pr);
+    // console.log(owner);
+    // console.log(repo);
+    // console.log(issueNumber);
     try {
       
       const response = await axios.post(`/api/approve-bounty`, {
@@ -67,7 +67,7 @@ export default function PullRequests() {
         });
       }
 
-      console.log(response);
+      // console.log(response);
     } catch (error : any) {
       console.error("Error approving bounty:", error);
       toast({
@@ -92,7 +92,7 @@ export default function PullRequests() {
 
           const response = await axios.get(`/api/get-pull-requests?repo_name=${repo}&issue_number=${issueNumber}`);
           
-          console.log(response);
+          // console.log(response);
 
           // Map the response data to your PullRequest type
           const pullRequests = response.data.pullRequests.items.map((item: any) => ({
@@ -112,12 +112,12 @@ export default function PullRequests() {
 
           setPullRequests(pullRequests);
           setHasBounty(response.data.hasBounty);
-          console.log(response.data);
+          // console.log(response.data);
           setAmount(response.data.amount);
         } catch (error) {
           console.error("Error fetching pull requests:", error);
         } 
-        console.log("in");
+        // console.log("in");
       }
       setLoading(false);
     }

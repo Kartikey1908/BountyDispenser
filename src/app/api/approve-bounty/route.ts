@@ -17,8 +17,8 @@ export async function POST(req : NextRequest, res : NextRequest) {
     }
 
     const userId = session._id;
-    console.log("Session user", userId);
-    // console.log(session);
+    // // console.log("Session user", userId);
+    // // console.log(session);
 
 
     try {
@@ -30,7 +30,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
 
         const {pr_user_name, pr_user_id, repo_name, issue_number, pr_id} = await req.json();
 
-        console.log(pr_user_name, pr_user_id, repo_name, issue_number, pr_id)
+        // console.log(pr_user_name, pr_user_id, repo_name, issue_number, pr_id);
 
         if (!pr_user_name || !pr_user_id || !repo_name || !issue_number || !pr_id) {
             return NextResponse.json({
@@ -47,7 +47,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
             issue_number,
             created_by: userId,
         });
-        console.log(existingBounty);
+        // console.log(existingBounty);
 
         if (!existingBounty ) {
             return NextResponse.json({
@@ -55,7 +55,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
                 message: "Bounty does not exist"
             }, {status: 404})
         }
-        console.log("Bounty user", existingBounty.created_by);
+        // console.log("Bounty user", existingBounty.created_by);
 
         if (existingBounty.status === "closed") {
             return NextResponse.json({
@@ -73,7 +73,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
         existingBounty.status = "closed";
         await existingBounty.save();
 
-        console.log(bountyWinner);
+        // console.log(bountyWinner);
 
         if (!bountyWinner) {
             const newBountyWinner = await User.create({
@@ -86,7 +86,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
         }
         else {
             bountyWinner.pending_amount = (Number(bountyWinner.pending_amount) + Number(existingBounty.amount)).toString();
-            console.log(bountyWinner.pending_amount);
+            // console.log(bountyWinner.pending_amount);
             await bountyWinner.save();
         }
 
@@ -97,7 +97,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
 
 
     } catch (error) {
-        console.log("Error occured while creating new bounty",error)
+        // console.log("Error occured while creating new bounty",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror"

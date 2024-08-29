@@ -21,13 +21,13 @@ export async function POST(req : NextRequest, res : NextRequest) {
     const userId = session._id;
     // const userId = "66cb8c08f4b5584be80a942a";
 
-    console.log("Session user", userId);
-    // console.log(session);
+    // console.log("Session user", userId);
+    // // console.log(session);
 
 
     try {
         await dbConnect();
-        console.log("Connected to database");
+        // console.log("Connected to database");
 
         const { publicKey } = await req.json();
 
@@ -69,7 +69,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
         const recipientPublicKey = new PublicKey(publicKey);
   
 
-        console.log(amount);
+        // console.log(amount);
         const transaction = new Transaction().add(
             SystemProgram.transfer({
                 fromPubkey: parentKeypair.publicKey,
@@ -80,7 +80,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
 
         // TODO: cut extra 5000 lamports for fees
         const signature = await sendAndConfirmTransaction(connection, transaction, [parentKeypair]);
-        console.log("Transaction signature", signature);
+        // console.log("Transaction signature", signature);
 
         userData.locked_amount = "0";
         userData.save();
@@ -101,7 +101,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
                 user.pending_amount = user.locked_amount;
                 user.locked_amount = "0";
                 user.save();
-                console.log("Error occured while creating new bounty",error);
+                // console.log("Error occured while creating new bounty",error);
             }
         } catch (error) {
             return NextResponse.json({

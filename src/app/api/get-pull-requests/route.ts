@@ -41,7 +41,7 @@ export async function GET(req : NextRequest, res : NextRequest) {
             created_by : userId,
         });
 
-        console.log(bounty);
+        // console.log(bounty);
 
         let hasBounty = false;
         let amount = "";
@@ -62,7 +62,7 @@ export async function GET(req : NextRequest, res : NextRequest) {
 
 
     } catch (error) {
-        console.log("Error occured while fetching pull requests",error)
+        // console.log("Error occured while fetching pull requests",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror, Cannot fetch pull requests"

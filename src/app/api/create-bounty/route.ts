@@ -17,13 +17,13 @@ export async function POST(req : Request, res : NextRequest) {
     }
 
     const userId = session._id;
-    // console.log(session);
+    // // console.log(session);
 
 
     try {
         await dbConnect();
 
-        console.log("Inside create bounty");
+        // console.log("Inside create bounty");
 
         const {repo_name, issue_number, amount, signature, title, body, publicKey} : 
             {
@@ -43,14 +43,14 @@ export async function POST(req : Request, res : NextRequest) {
             }, { status: 400 });
         }
 
-        console.log({repo_name, issue_number, amount, signature, publicKey})
+        // console.log({repo_name, issue_number, amount, signature, publicKey})
 
         const existingBounty = await Bounty.findOne({
             repo_name, 
             issue_number, 
             created_by: userId
         });
-        console.log(existingBounty);
+        // console.log(existingBounty);
 
         if(existingBounty){
             return NextResponse.json({
@@ -117,7 +117,7 @@ export async function POST(req : Request, res : NextRequest) {
 
 
     } catch (error) {
-        console.log("Error occured while creating new bounty",error)
+        // console.log("Error occured while creating new bounty",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror"

@@ -23,7 +23,7 @@ export function SidebarDemo() {
 
 
 const handleSignOut = async () => {
-  console.log("Signing out...");
+  // console.log("Signing out...");
   await signOut({ redirect: false });
   // Optionally redirect after sign out to avoid re-login
   router.push("/");  // Change to your desired route

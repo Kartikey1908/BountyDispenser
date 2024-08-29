@@ -17,8 +17,8 @@ export async function POST(req : NextRequest, res : NextRequest) {
     }
 
     const userId = session._id;
-    console.log("Session user", userId);
-    // console.log(session);
+    // console.log("Session user", userId);
+    // // console.log(session);
 
 
     try {
@@ -28,7 +28,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
 
         const {pr_user_name, pr_user_id, signature, amount} = await req.json();
 
-        console.log(pr_user_name, pr_user_id)
+        // console.log(pr_user_name, pr_user_id)
 
         if (!pr_user_name || !pr_user_id ||!signature ||!amount) {
             return NextResponse.json({
@@ -72,7 +72,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
         });
 
 
-        console.log(bountyWinner);
+        // console.log(bountyWinner);
 
         if (!bountyWinner) {
             const newBountyWinner = await User.create({
@@ -85,7 +85,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
         }
         else {
             bountyWinner.pending_amount = (Number(bountyWinner.pending_amount) + Number(amount)).toString();
-            console.log(bountyWinner.pending_amount);
+            // console.log(bountyWinner.pending_amount);
             await bountyWinner.save();
         }
 
@@ -96,7 +96,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
 
 
     } catch (error) {
-        console.log("Error occured while creating new bounty",error)
+        // console.log("Error occured while creating new bounty",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror"

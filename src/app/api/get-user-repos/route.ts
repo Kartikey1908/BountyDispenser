@@ -27,7 +27,7 @@ export async function GET(req : NextRequest, res : NextRequest) {
 
         const repos = response.data.filter((repo : any) => repo.owner.login === session.user.profile.login)
           
-        // console.log("repos", response.data);
+        // // console.log("repos", response.data);
 
 
         if (!repos) {
@@ -45,7 +45,7 @@ export async function GET(req : NextRequest, res : NextRequest) {
 
 
     } catch (error) {
-        console.log("Error occured while creating new bounty",error)
+        // console.log("Error occured while creating new bounty",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror"

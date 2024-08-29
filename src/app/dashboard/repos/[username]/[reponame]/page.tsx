@@ -23,7 +23,7 @@ const RepoIssuesPage = () => {
   const params = useParams();
 
   const repoName = `${paths[3]}/${paths[4]}`;
-  console.log(paths);
+  // console.log(paths);
 
   const { data: session } = useSession();
   const [issues, setIssues] = useState<any[]>([]);
@@ -53,9 +53,9 @@ const RepoIssuesPage = () => {
           throw new Error("Error fetching issues");
         }
         
-        console.log(response);
+        // console.log(response);
         setIssues(response.data.issues);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching issues", error);
       } finally {
@@ -82,12 +82,12 @@ const RepoIssuesPage = () => {
 
 
   const handleClick = (issue: any) => {
-    console.log('handleClick called', {issue});
+    // console.log('handleClick called', {issue});
     if (issue.hasBounty) {
-      console.log('Navigating to pull requests...');
+      // console.log('Navigating to pull requests...');
       router.push(`/dashboard/repos/${repoName}/issue/${issue.number}/pull-requests`);
     } else {
-      console.log('Making payment...');
+      // console.log('Making payment...');
       makePayment(issue);
     }
   };
@@ -132,11 +132,11 @@ const RepoIssuesPage = () => {
         })
         const transaction34 = await connection.confirmTransaction({ blockhash, lastValidBlockHeight, signature });
         setTxnSignature(signature);
-        console.log(signature);
-        console.log(transaction34)
+        // console.log(signature);
+        // console.log(transaction34)
         
         const amountInLamports = Number(issue.amount) * LAMPORTS_PER_SOL;
-        console.log("Amount in lamports", amountInLamports);
+        // console.log("Amount in lamports", amountInLamports);
         const response = await axios.post("/api/create-bounty", {
             repo_name: paths[4], 
             issue_number: issue.number, 
@@ -149,7 +149,7 @@ const RepoIssuesPage = () => {
 
 
 
-        console.log("Issues api response",response);
+        // console.log("Issues api response",response);
         const updatedIssues = issues.map(val => {
           return val.id === issue.id ? {...issue, amount: ''} : val;
         })
@@ -164,7 +164,7 @@ const RepoIssuesPage = () => {
 
 
     } catch (error) {
-        console.log("Error occurred, transaction failed");
+        // console.log("Error occurred, transaction failed");
         toast({
             variant: "destructive",
             title: "Transaction Failed",
@@ -246,7 +246,7 @@ const RepoIssuesPage = () => {
 
                 <button
                     onClick={() => {
-                      console.log('Button clicked');
+                      // console.log('Button clicked');
                       handleClick(issue);
                     }}
                     className="group relative inline-flex h-12 w-full overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 mb-2"

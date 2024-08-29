@@ -19,8 +19,8 @@ export async function POST(req : NextRequest, res : NextRequest) {
     }
 
     const userId = session._id;
-    console.log("Session user", userId);
-    // console.log(session);
+    // console.log("Session user", userId);
+    // // console.log(session);
 
 
     try {
@@ -40,7 +40,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
             }, { status: 400 });
         }
 
-        console.log({issue_id})
+        // console.log({issue_id})
 
         
 
@@ -48,7 +48,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
             _id: new mongoose.Types.ObjectId(issue_id),
 
         });
-        console.log(existingBounty);
+        // console.log(existingBounty);
 
         if (!existingBounty ) {
             return NextResponse.json({
@@ -56,7 +56,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
                 message: "Bounty does not exist"
             }, {status: 404})
         }
-        console.log("Bounty user", existingBounty.created_by);
+        // console.log("Bounty user", existingBounty.created_by);
         if (existingBounty.created_by.toString() !== userId) {
             return NextResponse.json({
                 success: false,
@@ -71,7 +71,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
         const recipientPublicKey = new PublicKey(publicKey);
         const amount = existingBounty.amount;
 
-        console.log(amount);
+        // console.log(amount);
         const transaction = new Transaction().add(
             SystemProgram.transfer({
                 fromPubkey: parentKeypair.publicKey,
@@ -82,7 +82,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
 
         // TODO: cut extra 5000 lamports for fees
         const signature = await sendAndConfirmTransaction(connection, transaction, [parentKeypair]);
-        console.log("Transaction signature", signature);
+        // console.log("Transaction signature", signature);
         await Bounty.findByIdAndDelete(issue_id);
 
         const updatedBounties = await Bounty.find({
@@ -92,7 +92,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
         let totalBountyAmount = updatedBounties.reduce((acc, val) => acc + (Number(val.amount))/LAMPORTS_PER_SOL, 0);
 
 
-        console.log("Bounties after deletion", updatedBounties);
+        // console.log("Bounties after deletion", updatedBounties);
 
         return NextResponse.json({
             success: true,
@@ -103,7 +103,7 @@ export async function POST(req : NextRequest, res : NextRequest) {
 
 
     } catch (error) {
-        console.log("Error occured while creating new bounty",error)
+        // console.log("Error occured while creating new bounty",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror"

@@ -16,7 +16,7 @@ export default function AppBar() {
 
     useEffect(() => {
         if (publicKey) {
-            console.log(publicKey.toString());
+            // console.log(publicKey.toString());
             try {
                 
             } catch (error) {
@@ -33,7 +33,7 @@ export default function AppBar() {
         <>
             <div className="flex flex-row justify-between px-6 py-4 bg-black max-h-[5.1rem]">
                 <div className="text-3xl font-bold flex items-center text-white">
-                    Bounty Dispenser
+                    Bounty Dispenser (Devnet)
                 </div>
                 
                 <div className="flex gap-x-4 items-center">

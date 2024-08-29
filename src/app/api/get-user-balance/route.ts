@@ -30,9 +30,9 @@ export async function GET(req : NextRequest, res : NextRequest) {
                 message: "User does not exists",
             }, {status: 403})
         }
-        console.log("Balance before", userData.pending_amount);
+        // console.log("Balance before", userData.pending_amount);
         const balance = (Number(userData.pending_amount) / LAMPORTS_PER_SOL)  ? (Number(userData.pending_amount) / LAMPORTS_PER_SOL).toString() : "0";
-        console.log("Balance", balance);
+        // console.log("Balance", balance);
 
         return NextResponse.json({
             success: true,
@@ -41,7 +41,7 @@ export async function GET(req : NextRequest, res : NextRequest) {
         })
 
     } catch (error) {
-        console.log("Error occured while fetching user balance",error)
+        // console.log("Error occured while fetching user balance",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror"

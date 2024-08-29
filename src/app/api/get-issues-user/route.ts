@@ -27,8 +27,8 @@ export async function GET(req : NextRequest, res : NextRequest) {
         const userName = searchParams.get('user_name') as string
         
         // TODO : remove userName if not used
-        console.log({ userId, repoName, userName})
-        console.log(session.accessToken)
+        // console.log({ userId, repoName, userName})
+        // console.log(session.accessToken)
 
 
         const bountyIssues = await Bounty.find(
@@ -75,7 +75,7 @@ export async function GET(req : NextRequest, res : NextRequest) {
 
 
     } catch (error) {
-        console.log("Error occured while creating new bounty",error)
+        // console.log("Error occured while creating new bounty",error)
         return NextResponse.json({
             success: false,
             message: "Internal Server Errror"

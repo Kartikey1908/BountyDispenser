@@ -21,7 +21,7 @@ export async function GET(req: NextRequest, res: NextRequest) {
     try {
         await dbConnect();
 
-        console.log({ userId });
+        // console.log({ userId });
 
         const issues = await Bounty.find({
             created_by: userId,
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest, res: NextRequest) {
             return acc + (isNaN(amountInSOL) ? 0 : amountInSOL);
         }, 0);
 
-        console.log(totalBountyAmount);
+        // console.log(totalBountyAmount);
 
         return NextResponse.json({
             success: true,
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest, res: NextRequest) {
         }, { status: 200 });
 
     } catch (error) {
-        console.log("Error occurred while fetching issues:", error);
+        // console.log("Error occurred while fetching issues:", error);
         return NextResponse.json({
             success: false,
             message: "Internal Server Error",
