@@ -25,7 +25,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon1.ico" type="image/jpg" />
         <meta property="og:image" content="/image.png" />
-        <meta property="og:url" content="https://bounty-dispenser.vercel.app/" />
+        <meta property="og:url" content="https://bounty-dispenser.vercel.app" />
         <meta property="og:type" content="website" />
       </head>
       <body className={inter.className}>
