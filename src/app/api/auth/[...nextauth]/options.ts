@@ -14,6 +14,7 @@ export const authOptions = {
     ],
     callbacks: {
       async signIn({ user, account, profile }: { user: NextAuthuser; account: Account | null; profile?: any }) {
+        console.log("Sign in calllback triggered");
         await dbConnect();
   
         const existingUser = await User.findOne({ github_id: user.id });
@@ -43,6 +44,8 @@ export const authOptions = {
       },
       
       async jwt({ token, account, profile }: { token: any; account: Account | null; profile?: any }) {
+        console.log("jwt in calllback triggered");
+
         if (account) {
           token.accessToken = account.access_token;
           token.provider = account.provider;
@@ -54,8 +57,14 @@ export const authOptions = {
         }
         return token; 
       },
+      async redirect({ url, baseUrl } : {url : any, baseUrl: any}) {
+        console.log('Redirect callback triggered', { url, baseUrl });
+        return url.startsWith(baseUrl) ? url : baseUrl;
+      },
   
       async session({session, token} : {session: any; token: any}){
+        console.log("session in calllback triggered");
+
         session.accessToken = token.accessToken;
         session.user.profile = token.profile;
         session._id = token._id;
