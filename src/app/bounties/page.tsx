@@ -36,9 +36,9 @@ export default function BountiesPage() {
     return (
         <main className="relative flex flex-col min-h-screen items-center pt-8 px-8 bg-[rgb(2,6,21)]">
             {/* Meteor Background */}
-            <div className="absolute inset-0 z-0">
+            {/* <div className="absolute inset-0 z-0">
                 <Meteors number={60} />
-            </div>
+            </div> */}
 
             <h1 className="text-2xl text-white font-bold mb-6 z-10">Available Bounties</h1>
             <section className="mt-8 w-[90vw] z-10">
