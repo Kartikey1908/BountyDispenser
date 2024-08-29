@@ -10,7 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Bounty Dispenser",
-  description: "An app to dispense and assign bounties on issues on your github.",
+  description: "A dynamic Next.js app enabling GitHub bounty management with secure Solana payments, intuitive UI, and real-time issue tracking.",
+  icons: "/favicon1.ico",
 };
 
 export default function RootLayout({
@@ -22,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon2.ico" type="image/jpg" />
+        <link rel="icon" href="/favicon1.ico" type="image/jpg" />
+        <meta property="og:image" content="/image.png" />
+        <meta property="og:url" content="https://bounty-dispenser.vercel.app/" />
+        <meta property="og:type" content="website" />
       </head>
       <body className={inter.className}>
         <Provider>
