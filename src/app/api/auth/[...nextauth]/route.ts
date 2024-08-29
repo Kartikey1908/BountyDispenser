@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { authOptions } from "./options";
 
-export const maxDuration = 300;
+export const maxDuration = 60;
 
 const handler = NextAuth(authOptions);
 
