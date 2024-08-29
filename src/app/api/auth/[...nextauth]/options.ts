@@ -18,7 +18,7 @@ export const authOptions = {
         await dbConnect();
   
         const existingUser = await User.findOne({ github_id: user.id });
-        // // console.log({user, account, profile})
+        console.log({user, account, profile})
   
         try {
           if (!existingUser) {
