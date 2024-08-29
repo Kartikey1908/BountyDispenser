@@ -3,6 +3,7 @@ import { User as NextAuthuser, Account } from "next-auth";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/model/User";
 
+export const maxDuration = 30;
 
 export const authOptions = {
     providers: [
