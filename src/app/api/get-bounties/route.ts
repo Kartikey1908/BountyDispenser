@@ -4,8 +4,6 @@ import Bounty from '@/model/Bounty';
 import User from '@/model/User';
 import { NextRequest, NextResponse } from 'next/server';
 
-// export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 
 
 export async function GET(req : NextRequest, res : NextResponse) {
@@ -25,12 +23,13 @@ export async function GET(req : NextRequest, res : NextResponse) {
     const skip = (pageNumber - 1) * pageSize;
 
     // Fetch the bounties from the database
+    await User.find({});
     const bounties = await Bounty
       .find({})
       .sort({ created_at: -1 }) // Assuming you want the most recent bounties first
       .skip(skip)
       .limit(pageSize)
-      .populate('created_by', 'github_username');
+      .populate('created_by', 'github_username',);
 
       console.log("Data fetched from db", bounties);
 
