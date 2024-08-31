@@ -1,6 +1,7 @@
 // pages/api/getBounties.js
 import dbConnect from '@/lib/dbConnect';
 import Bounty from '@/model/Bounty';
+import User from '@/model/User';
 import { NextRequest, NextResponse } from 'next/server';
 
 // export const dynamic = 'force-dynamic';
