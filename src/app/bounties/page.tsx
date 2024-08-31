@@ -10,7 +10,6 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 export default function BountiesPage() {
     const [bounties, setBounties] = useState<Bounty[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const { data: session } = useSession();
 
     useEffect(() => {
         async function fetchBounties() {
