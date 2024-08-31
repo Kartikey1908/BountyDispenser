@@ -3,6 +3,8 @@ import dbConnect from '@/lib/dbConnect';
 import Bounty from '@/model/Bounty';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 
 export async function GET(req : NextRequest, res : NextResponse) {
     const { searchParams } = new URL(req.url);
