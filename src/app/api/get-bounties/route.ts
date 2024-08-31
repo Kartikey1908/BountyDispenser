@@ -1,5 +1,6 @@
 // pages/api/getBounties.js
 import dbConnect from '@/lib/dbConnect';
+import initModels from '@/lib/initModels';
 import Bounty from '@/model/Bounty';
 import User from '@/model/User';
 import { NextRequest, NextResponse } from 'next/server';
@@ -18,12 +19,12 @@ export async function GET(req : NextRequest, res : NextResponse) {
 
   try {
     await dbConnect();
+    initModels();
 
     // Calculate the offset for pagination
     const skip = (pageNumber - 1) * pageSize;
 
     // Fetch the bounties from the database
-    await User.find({});
     const bounties = await Bounty
       .find({})
       .sort({ created_at: -1 }) // Assuming you want the most recent bounties first
