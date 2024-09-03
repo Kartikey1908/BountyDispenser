@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bounty Management Platform
+
+A decentralized bounty management platform built on the Solana blockchain, allowing users to create, manage, and delete bounties associated with GitHub issues.
+
+## Features
+
+- **User Authentication**: Secure user authentication using NextAuth.js.
+- **Solana Blockchain Integration**: Transfer bounties using Solana's blockchain.
+- **GitHub Integration**: Link bounties to GitHub issues and manage them seamlessly.
+- **Responsive UI**: A user-friendly interface built with React and TailwindCSS.
+
+## Technologies Used
+
+- **Frontend**: Next.js, React, TailwindCSS
+- **Backend**: Next.js API routes, Mongoose
+- **Blockchain**: Solana Web3.js
+- **Authentication**: NextAuth.js
+- **Database**: MongoDB
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v14 or later)
+- npm or yarn
+- MongoDB instance
+- Solana CLI and wallet
+- GitHub OAuth app for authentication
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    ```bash
+    git clone https://github.com/Kartikey1908/BountyDispenser.git
+    cd yourrepository
+    ```
 
-## Learn More
+2. **Install dependencies**:
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set up environment variables**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    Create a `.env.local` file in the root directory and add the following variables:
 
-## Deploy on Vercel
+    ```env
+    MONGODB_URI=your_mongodb_uri
+    NEXTAUTH_URL=http://localhost:3000
+    NEXTAUTH_SECRET=your_nextauth_secret
+    GITHUB_CLIENT_ID=your_github_client_id
+    GITHUB_CLIENT_SECRET=your_github_client_secret
+    PARENT_WALLET_PRIVATE_KEY=your_solana_wallet_private_key
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run the development server**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Usage
+
+1. **Authenticate**: Log in with your GitHub account.
+2. **Create a Bounty**: Link a GitHub issue and set a bounty amount.
+3. **Manage Bounties**: View, update, or delete bounties associated with your GitHub issues.
+4. **Receive Bounties**: Transfer bounties back to your wallet or to another user.
+
+## API Endpoints
+
+- `POST /api/create-bounty`: Create a new bounty.
+- `POST /api/approve-bounty`: Approve a Bounty to Pay the User.
+- `POST /api/remove-bounty`: Remove an existing bounty.
+- `GET /api/get-pull-requests`: Fetch all the pull requests for a repo.
+- `GET /api/get-issues`: Fetch all issues associated with bounties.
+- `GET /api/get-bounties`: Get all the issues which have bounties set.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
+
+
+## Acknowledgements
+
+- [Solana](https://solana.com)
+- [Next.js](https://nextjs.org)
+- [TailwindCSS](https://tailwindcss.com)
+- [Mongoose](https://mongoosejs.com)
+- [NextAuth.js](https://next-auth.js.org)
+
+## Contact
+
+[@Kartikey1908](mailto:ykartikey1908@gmail.com)
+
+Project Link: [Github Bounty Dispenser](https://github.com/Kartikey1908/BountyDispenser)
